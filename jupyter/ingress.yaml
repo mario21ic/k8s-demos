@@ -1,11 +1,11 @@
-apiVersion: extensions/v1beta1
 kind: Ingress
+apiVersion: extensions/v1beta1
 metadata:
   name: jupyter-notebook
   namespace:
   annotations:
-    kubernetes.io/tls-acme: "true"
-    kubernetes.io/ingress.class: "nginx"
+    #kubernetes.io/tls-acme: "true"
+    #kubernetes.io/ingress.class: "nginx"
     #nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.global-static-ip-name: "kubernetes-ingress"
 spec:
@@ -13,7 +13,7 @@ spec:
   #- host: yourhost.yourdomain.com
   - http:
       paths:
-      - path: /
+      - path: /*
         backend:
           serviceName: jupyter-notebook
           servicePort: 8888

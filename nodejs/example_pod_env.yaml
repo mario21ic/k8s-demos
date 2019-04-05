@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: environment-variables
+spec:
+  containers:
+  - name: env-var-container
+    #image: nginx:1.7.9
+    image: nginx:alpine
+    # The env field lets you set environment variables
+    # for the container
+    env:
+    - name: BASE_URL
+      value: "https://api.company.com/"
+    - name: CONNECTION_STRING
+      value: "mongodb://localhost:27017"

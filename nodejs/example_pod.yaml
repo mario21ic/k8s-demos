@@ -1,0 +1,19 @@
+# Which version of Kubernetes this object comes from
+apiVersion: v1
+# What type of object am I?
+kind: Pod
+# Metadata - Meta-information about the object itself
+metadata:
+  name: nginx-pod
+  # (Labels and annotations will be explained later!)
+  labels:
+    key: value
+  annotations:
+    otherkey: othervalue
+# Spec - what you want your object to be
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80

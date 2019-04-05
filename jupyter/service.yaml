@@ -1,13 +1,14 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: jupyter-notebook
+  name: jupyter-svc
 spec:
-  type: NodePort
+  #type: NodePort
+  type: LoadBalancer
   selector:
     app: jupyter-notebook
   ports:
   - protocol: TCP
-    nodePort: 30040
+    #nodePort: 30040
     port: 8888
     targetPort: 8888

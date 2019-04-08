@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: myconfigdata
+data:
+  myfile.txt: |
+    This is a file demo
+    this is a second line
+
+    this is a ...

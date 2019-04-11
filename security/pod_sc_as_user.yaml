@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sc-as-user
+spec:
+  # PodSecurityContext
+  securityContext:
+    runAsUser: 2500
+    fsGroup: 2000
+  volumes:
+  - name: sc-as-user-vol
+    emptyDir: {}
+  containers:
+  - name: sc-as-user-cont
+    image: alpine
+    command:
+      - sleep
+      - "3600"
+    volumeMounts:
+    - name: sc-as-user-vol
+      mountPath: /data/test
+    securityContext:
+      allowPrivilegeEscalation: false

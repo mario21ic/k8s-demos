@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpine_privileged
+  namespace: default
+spec:
+  containers:
+    - image: alpine
+      name: alpine
+      command:
+        - sleep
+        - "3600"

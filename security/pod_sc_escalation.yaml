@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sc-escalation
+spec:
+  securityContext:
+    runAsUser: 2500
+    fsGroup: 2000
+  volumes:
+  - name: sc-escalation-vol
+    emptyDir: {}
+  containers:
+  - name: sc-escalation-cont
+    image: alpine
+    command:
+      - sleep
+      - "3600"
+    volumeMounts:
+    - name: sc-escalation-vol
+      mountPath: /data/test
+    securityContext:
+      allowPrivilegeEscalation: true

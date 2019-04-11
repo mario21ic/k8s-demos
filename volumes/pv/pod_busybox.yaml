@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: default
+spec:
+  volumes:
+    - name: myvolume
+      persistentVolumeClaim:
+        claimName: myclaim
+  containers:
+    - image: busybox
+      name: busybox
+      command:
+        - sleep
+        - "3600"
+      volumeMounts:
+      - mountPath: /tmp/mydata
+        name: myvolume

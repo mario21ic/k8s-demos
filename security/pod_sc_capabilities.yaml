@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sc-capabilities
+spec:
+  securityContext:
+    runAsUser: 0
+    fsGroup: 0
+  volumes:
+  - name: sc-capabilities-vol
+    emptyDir: {}
+  containers:
+  - name: sc-capabilities-cont
+    image: alpine
+    command:
+      - sleep
+      - "3600"
+    volumeMounts:
+    - name: sc-capabilities-vol
+      mountPath: /data/test
+    securityContext:
+      capabilities:
+        add: ["ALL"]
+    securityContext:
+      allowPrivilegeEscalation: true

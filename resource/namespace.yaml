@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  #creationTimestamp: "2019-04-23T19:34:54Z"
+  name: mem-example
+  #resourceVersion: "37908"
+  #selfLink: /api/v1/namespaces/mem-example
+  #uid: dedc337c-65fe-11e9-82be-080027001e19
+#spec:
+#  finalizers:
+#  - kubernetes
+#status:
+#  phase: Active

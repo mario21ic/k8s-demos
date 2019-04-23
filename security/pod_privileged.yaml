@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: alpine_privileged
+  name: alpine-privileged
   namespace: default
 spec:
   containers:
@@ -10,3 +10,6 @@ spec:
       command:
         - sleep
         - "3600"
+      securityContext:
+        privileged: true
+

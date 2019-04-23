@@ -21,5 +21,6 @@ spec:
     securityContext:
       capabilities:
         add: ["ALL"]
+        #add: ["NET_ADMIN"]
     securityContext:
       allowPrivilegeEscalation: true

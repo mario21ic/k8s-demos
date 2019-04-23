@@ -29,4 +29,5 @@ $ kubectl get ingress
 To test if a container is mode privileged
 ```
 grep "Cap" /proc/1/status
+ls -la /dev/
 ```

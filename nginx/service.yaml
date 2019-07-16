@@ -3,6 +3,7 @@ apiVersion: v1
 metadata:
   name: nginx-np-svc
 spec:
+  #type: NodePort
   type: NodePort
   selector:
     app: nginx

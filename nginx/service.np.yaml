@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx-cl-svc
+  name: nginx-np-svc
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: nginx
   ports:

@@ -3,7 +3,7 @@
 nodes:
 
 # master
-- address: 192.168.11.36
+- address: 192.168.11.82
   port: "22"
   internal_address: ""
   role:
@@ -20,7 +20,7 @@ nodes:
   taints: []
 
 # worker1
-- address: 192.168.11.40
+- address: 192.168.11.83
   port: "22"
   internal_address: ""
   role:
@@ -36,7 +36,7 @@ nodes:
   taints: []
 
 # worker2
-- address: 192.168.11.41
+- address: 192.168.11.84
   port: "22"
   internal_address: ""
   role:

@@ -19,8 +19,8 @@ nodes:
   labels: {}
   taints: []
 
-# worker
-- address: 192.168.11.38
+# worker1
+- address: 192.168.11.40
   port: "22"
   internal_address: ""
   role:
@@ -34,6 +34,23 @@ nodes:
   ssh_cert_path: ""
   labels: {}
   taints: []
+
+# worker2
+- address: 192.168.11.41
+  port: "22"
+  internal_address: ""
+  role:
+  - worker
+  hostname_override: ""
+  user: vagrant
+  docker_socket: /var/run/docker.sock
+  ssh_key: ""
+  ssh_key_path: ~/.ssh/id_rsa
+  ssh_cert: ""
+  ssh_cert_path: ""
+  labels: {}
+  taints: []
+
 services:
   etcd:
     image: ""

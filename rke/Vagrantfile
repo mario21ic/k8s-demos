@@ -14,7 +14,18 @@ Vagrant.configure("2") do |config|
     m.vm.provision "shell", inline: "sudo usermod -aG docker vagrant"
   end
   
-  config.vm.define "worker" do |w|
+  config.vm.define "worker1" do |w|
+    w.vm.box = "hashicorp/bionic64"
+    w.vm.network "public_network", use_dhcp_assigned_default_route: true, bridge: "enp3s0"
+    w.vm.provider "virtualbox" do |vb|
+      vb.memory = 2048
+      vb.cpus = 1
+    end
+    w.vm.provision "shell", inline: "curl -fsSL https://get.docker.com | sh"
+    w.vm.provision "shell", inline: "sudo usermod -aG docker vagrant"
+  end
+
+  config.vm.define "worker2" do |w|
     w.vm.box = "hashicorp/bionic64"
     w.vm.network "public_network", use_dhcp_assigned_default_route: true, bridge: "enp3s0"
     w.vm.provider "virtualbox" do |vb|

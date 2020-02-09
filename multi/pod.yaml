@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: multi-pod
+spec:
+  containers:
+  - name: nginx
+    image: mario21ic/nginx:alpine
+    ports:
+      - containerPort: 80
+        name: http
+        protocol: TCP
+  - name: alpine
+    image: alpine
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do date; sleep 5; done"]

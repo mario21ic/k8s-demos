@@ -1,7 +1,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: nginx
+  name: nginx-liveness
 spec:
   containers:
   - name: nginx
@@ -14,6 +14,14 @@ spec:
       timeoutSeconds: 1
       periodSeconds: 10
       failureThreshold: 3
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 80
+      periodSeconds: 2
+      initialDelaySeconds: 0
+      failureThreshold: 3
+      successThreshold: 1
     ports:
       - containerPort: 80
         name: http

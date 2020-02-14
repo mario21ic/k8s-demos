@@ -1,7 +1,7 @@
 kind: ReplicationController
 apiVersion: v1
 metadata:
-  name: myapp-rp
+  name: myapp-rc
 spec:
   replicas: 3
   selector:
@@ -15,3 +15,4 @@ spec:
       containers:
       - name: myapp
         image: alpine
+        command: ['sh', '-c', 'echo Hello Aulautil! && sleep 3600']

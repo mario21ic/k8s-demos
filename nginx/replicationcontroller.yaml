@@ -1,0 +1,17 @@
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: myapp-rp
+spec:
+  replicas: 3
+  selector:
+    app: myapp
+  template:
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: alpine

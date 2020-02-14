@@ -1,0 +1,19 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: myapp-rs
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp-container
+        # image: alpine
+        image: busybox
+        command: ['sh', '-c', 'echo Hello Aulautil! && sleep 3600']

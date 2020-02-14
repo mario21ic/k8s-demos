@@ -1,0 +1,17 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-labels-prod
+  labels:
+    release: stable
+    environment: prod
+    tier: backend
+    region: us
+spec:
+  containers:
+  - name: nginx
+    image: mario21ic/nginx:alpine
+    ports:
+      - containerPort: 80
+        name: http
+        protocol: TCP

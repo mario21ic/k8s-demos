@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-selectors-svc
+spec:
+  type: ClusterIP
+  selector:
+    tier: backend
+    region: us
+  ports:
+    - port: 80

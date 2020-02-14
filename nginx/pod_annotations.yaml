@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-annotations
+  annotations:
+    commit: 44e3275e0
+    logs: 'http://logservice.com/nginx'
+    contact: 'Mario Inga <mario21ic@gmail.com>'
+spec:
+  containers:
+  - name: nginx
+    image: mario21ic/nginx:alpine
+    ports:
+      - containerPort: 80
+        name: http
+        protocol: TCP

@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-no-restart
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+  restartPolicy: Never
+

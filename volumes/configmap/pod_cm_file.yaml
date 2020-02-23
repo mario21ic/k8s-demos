@@ -1,0 +1,17 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-pod-cm-file
+spec:
+ volumes:
+   - name: myfile
+     configMap:
+       name: myconfigdata
+ containers:
+   - name: nginx
+     image: nginx:alpine
+     volumeMounts:
+     - name: myfile
+       mountPath: /mnt/files/
+
+

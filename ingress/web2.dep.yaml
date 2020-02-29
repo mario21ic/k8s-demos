@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: web2
+spec:
+  selector:
+    matchLabels:
+      app: web2
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: web2
+    spec:
+      containers:
+      - name: web2
+        image: gcr.io/google-samples/hello-app:2.0
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP

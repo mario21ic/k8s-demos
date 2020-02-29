@@ -3,9 +3,8 @@ apiVersion: batch/v1beta1
 metadata:
   name: cj-countdown
 spec:
-  # cron syntax: minute hour month-day week-day user command
-  #schedule: "0 */5 * * *"
-  schedule: "21 20 * * *"
+  schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 10
   jobTemplate:
     spec:
       template:

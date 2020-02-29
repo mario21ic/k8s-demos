@@ -1,0 +1,20 @@
+kind: CronJob
+apiVersion: batch/v1beta1
+metadata:
+  name: countdown
+spec:
+  # cron syntax: minute hour month-day week-day user command
+  #schedule: "0 */5 * * *"
+  schedule: "21 20 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: counter
+            image: alpine
+            command:
+            - "bin/sh"
+            - "-c"
+            - "for i in 9 8 7 6 5 4 3 2 1 ; do echo $i ; done"
+          restartPolicy: OnFailure

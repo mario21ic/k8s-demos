@@ -1,0 +1,23 @@
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: nginx-ds-node
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      nodeSelector:
+        ssd: "true"
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: nginx
+        image: nginx:alpine
+      terminationGracePeriodSeconds: 30
+

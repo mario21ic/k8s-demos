@@ -8,3 +8,4 @@ spec:
     app: web2
   ports:
     - port: 8080
+      #nodePort: 32003

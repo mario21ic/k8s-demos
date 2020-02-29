@@ -7,4 +7,7 @@ spec:
   selector:
     app: nginx
   ports:
-    - port: 80
+    - name: web
+      port: 8080 # intern
+      nodePort: 32002 # node
+      targetPort: 80 # container

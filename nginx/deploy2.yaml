@@ -14,5 +14,4 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: mario21ic/nginx:alpine
-        #image: mario21ic/nginx:alpinev1
+        image: mario21ic/nginx:alpinev2

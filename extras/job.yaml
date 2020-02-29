@@ -1,0 +1,17 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: countdown
+spec:
+  template:
+    metadata:
+      name: countdown
+    spec:
+      containers:
+      - name: counter
+        image: alpine
+        command:
+         - "bin/sh"
+         - "-c"
+         - "for i in 9 8 7 6 5 4 3 2 1 ; do echo $i ; done"
+      restartPolicy: Never

@@ -1,0 +1,9 @@
+require 'sinatra'
+
+set :bind, '0.0.0.0'
+set :port, 8080
+
+get '/' do
+  my_key=ENV['MY_KEY']
+  "Variable: #{my_key}"
+end

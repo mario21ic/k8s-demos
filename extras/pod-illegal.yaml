@@ -1,0 +1,13 @@
+kind: Pod 
+apiVersion: v1 
+metadata:
+  name: pod-illegal
+  # Important! Create this pod in the right namespace. 
+  namespace: my-namespace
+spec:
+  # This pod will fail to be created because it doesn't have
+  # the `request` or `limit` property set -- this is required by 
+  # our resource quota.
+  containers:
+    - name: nginx-illegal 
+      image: nginx:alpine

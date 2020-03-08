@@ -5,23 +5,9 @@ metadata:
   # Important! Define the resource quota for the namespace. 
   namespace: my-namespace
 spec:
-  # The set of hard limits for each resource
-  # This is a map of resource type to request/limit 
   hard:
-    # Resource constrains can be set up for "counts" of objects. # In this case, limit the count of pods to five.
     pods: 5
-    # Constrain the sum of `requests` across objects 
-    # in the namespace.
-    # An object must now `request` its minimum
-    # resource requirements.
-    # If there aren't sufficient available resources
-    # in the namespace based on the `request` an object 
-    # may not run or may be killed.
     "requests.cpu": "2"
     "requests.memory": 1024m
-    # Constrain the sum of `limits` across objects in
-    # the namespace.
-    # A `limit` defines the maximum resources an object can # use when it's running -- if it starts to exceed
-    # this limit, it might get throttled.
     "limits.cpu": "4"
     "limits.memory": 2048m

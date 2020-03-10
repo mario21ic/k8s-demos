@@ -8,6 +8,6 @@ subjects:
   name: myappid
   namespace: coolapp
 roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: Role #this must be Role or ClusterRole
   name: podreader
+  apiGroup: rbac.authorization.k8s.io

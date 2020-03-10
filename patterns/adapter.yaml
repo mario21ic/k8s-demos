@@ -1,0 +1,42 @@
+kind: Pod 
+apiVersion: v1 
+metadata:
+  name: pod-with-adapter 
+spec:
+  volumes:
+  - name: shared-logs
+    emptyDir: {} 
+  containers:
+  # Main application container
+  - name: app-container
+    # This application writes system usage information
+    # (`top`) to a status file every five seconds.
+    image: alpine
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do date > /var/log/top.txt && top -n 1 -b >> /var/log/top.txt; sleep 5;done"]
+    # Mount the pod's shared log file into the app 
+    # container. The app writes logs here. 
+    volumeMounts:
+    - name: shared-logs
+      mountPath: /var/log
+  # Adapter container
+  - name: adapter-container
+    # This sidecar container takes the output format of 
+    # the application, simplifies and reformats it for 
+    # the monitoring service to come and collect.
+    # In this example, our monitoring service requires 
+    # status files to have the date, then memory usage, 
+    # then CPU percentage each on a new line.
+    # Our adapter container will inspect the contents of
+    # the app's top file, reformat it, and write the correctly 
+    # formatted output to the status file.
+    image: alpine
+    command: ["/bin/sh"]
+    # A long command doing a simple thing: read the
+    # `top.txt` file, adapt it, and write it to status.txt 
+    args: ["-c", "while true; do (cat /var/log/top.txt | head -1 > /var/log/status.txt) && (cat /var/log/top.txt | head -2 | tail -1 | grep -o -E '\\d+\\w' | head -1 >> /var/log/status.txt) && (cat /var/ log/top.txt | head -3 | tail -1 | grep -o -E '\\d+%' | head -1 >> /var/log/status.txt); sleep 5; done"]
+    # Mount the pod's shared log file into the adapter 
+    # container.
+    volumeMounts:
+    - name: shared-logs
+      mountPath: /var/log

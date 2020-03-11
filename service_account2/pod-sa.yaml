@@ -1,0 +1,12 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-demo-sa
+spec:
+  serviceAccountName: demo-sa
+  containers:
+  - name: alpine
+    image: alpine:3.9
+    command:
+    - "sleep"
+    - "10000"

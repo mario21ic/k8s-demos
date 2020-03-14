@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+ name: external-ip-database
+spec:
+ ports:
+   - port: 3306
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+ name: external-ip-database
+subsets:
+ - addresses:
+   - ip: 192.168.0.24
+   ports:  
+   - port: 3306
+

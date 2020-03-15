@@ -1,0 +1,17 @@
+kind: Pod  
+apiVersion: v1  
+metadata:
+ name: pod-one
+ namespace: my-namespace
+spec:  
+ containers:
+   - name: nginx-pod-one  
+     image: nginx:alpine
+     resources:
+       requests:
+         memory: 768Mi
+         cpu: "0.5"
+       limits:
+         memory: 1024Mi  
+         cpu: "2"
+

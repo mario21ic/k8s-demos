@@ -12,13 +12,10 @@ eksctl create cluster \
 
 eksctl create cluster -f cluster.yaml
 
-kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta4/nvidia-device-plugin.yml
-
-kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"
-
-Optional:
+Optional: in order to recover k8s credentials
 aws eks --region us-east-1 update-kubeconfig --name cluster_name
 
+kubectl get nodes
 
 # GPU
 
@@ -35,3 +32,6 @@ eksctl create cluster \
 --managed
 
 eksctl create cluster -f cluster-gpu.yaml
+
+kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta4/nvidia-device-plugin.yml
+kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"

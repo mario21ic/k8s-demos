@@ -1,0 +1,22 @@
+kind: Pod  
+apiVersion: v1  
+metadata:
+ name: pod-two
+ namespace: my-namespace
+spec:  
+ containers:
+   - name: nginx-pod-two
+     image: nginx:alpine
+     resources:
+       # This container requires at least 512m memory  
+       # and 0.5 CPU resource to run
+       requests:
+         memory: 200Mi
+         #memory: 512Mi
+         cpu: "0.5"
+       # This container can use at most 1024m memory
+       # and 2 CPU resources when it's running  
+       limits:
+         memory: 1024Mi  
+         cpu: "2"
+

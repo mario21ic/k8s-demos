@@ -1,0 +1,13 @@
+kind: ResourceQuota  
+apiVersion: v1  
+metadata:
+ name: my-resource-quota
+ namespace: my-namespace
+spec:
+ hard:
+   pods: 5
+   "requests.cpu": "2"
+   "requests.memory": 1024Mi
+   "limits.cpu": "4"
+   "limits.memory": 2048Mi
+

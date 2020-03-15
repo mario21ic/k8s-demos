@@ -31,3 +31,10 @@ cat /run/secrets/kubernetes.io/serviceaccount/token
 TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)
 curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/ --insecure
 curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
+
+
+kubectl apply -f pod-api-default.yaml
+curl $(minikube service api-sa-default --url)
+
+kubectl apply -f pod-api-sa.yaml
+curl $(minikube service api-demo-sa --url)

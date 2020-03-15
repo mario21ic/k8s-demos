@@ -1,6 +1,7 @@
 helm repo add stable https://kubernetes-charts.storage.googleapis.com
 helm search repo stable
 helm repo update
+
 helm install happy-panda stable/mariad
 helm list
 helm status happy-panda

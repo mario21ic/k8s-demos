@@ -19,10 +19,13 @@ helm uninstall my-ingress-controller
 helm install full-coral ./mychart
 helm ls
 helm get manifest full-coral
+helm upgrade full-coral ./mychart
+
 
 vim mychart/templates/configmap.yaml
 helm install clunky-serval ./mychart
 helm get manifest clunky-serval
 
+helm install myscale --set replicaCount=3 ./mychart
 
 helm install --debug --dry-run goodly-guppy ./mychart

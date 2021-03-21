@@ -1,0 +1,32 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+ name: hello-world
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: hello-world
+ template:
+   metadata:
+     labels:
+       app: hello-world
+   spec:
+     containers:
+     - name: hello-world
+       image: datawire/hello-world
+       ports:
+       - containerPort: 8000
+         name: http
+         protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+ name: hello-world
+spec:
+ type: ClusterIP
+ selector:
+   app: hello-world
+ ports:
+ - port: 8000

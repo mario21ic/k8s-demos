@@ -1,11 +1,10 @@
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
-  name: website
+  name: gluster-claim  
 spec:
   accessModes:
-    - ReadWriteMany
+  - ReadWriteMany      
   resources:
-    requests:
-      storage: 2Mi
-  storageClassName: glusterfile
+     requests:
+       storage: 1Gi

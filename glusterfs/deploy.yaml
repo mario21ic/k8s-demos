@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-dp
+spec:
+  selector:
+    matchLabels:
+      app: pg
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pg
+    spec:
+      containers:
+      - name: pg
+        image: postgres:9.6.1
+        # run as root because of glusterfs
+        securityContext:
+          runAsUser: 0
+          allowPrivilegeEscalation: false
+      
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: dbdata
+          readOnly: false
+      restartPolicy: Always
+      volumes:
+      - name: dbdata
+        persistentVolumeClaim:
+          claimName: gluster-claim

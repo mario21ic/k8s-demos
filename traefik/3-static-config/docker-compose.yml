@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  proxy:
+    image: traefik:v2.1
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./traefik.yml:/traefik.yml"
+  nginx:
+    image: nginx:alpine
+    labels:
+      - "traefik.http.routers.nginx.rule=Host(`nginx.mario21ic.com`)"
+
+  apache:
+    image: httpd:alpine
+    labels:
+      - "traefik.http.routers.apache.rule=Host(`apache.mario21ic.com`)"
+

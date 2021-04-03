@@ -21,3 +21,7 @@ spec:
       - name: nginx
         #image: mario21ic/nginx:alpine
         image: mario21ic/nginx:alpinev2
+      tolerations:
+      - key: "node.kubernetes.io/not-ready"
+        operator: "Exists"
+        effect: "NoSchedule"

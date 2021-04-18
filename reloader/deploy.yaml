@@ -18,14 +18,10 @@ spec:
       containers:
       - name: nginx
         image: nginx:alpine
-        env:
-          - name: MY_KEY
-            valueFrom:
-              configMapKeyRef:
-                name: my-cm
-                key: MY_KEY
-          - name: foo
-            value: "bar"
+        envFrom:
+        - configMapRef:
+            name: my-cm
+
         ports:
           - containerPort: 80
             name: http

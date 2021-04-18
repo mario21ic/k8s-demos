@@ -5,8 +5,8 @@ metadata:
   annotations:
     reloader.stakater.com/match: "true"
 data:
-  MY_KEY: "MY_VALUE"
-  #MY_KEY: "MY_VALUEsss"
+  #MY_KEY: "MY_VALUE"
+  MY_KEY: "MY_VALUEsss"
   foo: bar
-  #NEWKEY: "NEWVALUE"
+  NEWKEY: "NEWVALUE"
 

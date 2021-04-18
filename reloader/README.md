@@ -6,6 +6,7 @@ kubectl apply -f reloader.yaml
 Create configmap and deployment
 ```
 kubectl apply -f configmap.yaml
+kubectl describe configmap my-cm
 kubectl apply -f deploy.yaml
 ```
 

@@ -10,5 +10,5 @@ spec:
         targetRevision: HEAD
     destination:
         server: 'https://kubernetes.default.svc'
-        namespace: kube-system
+        namespace: default
     project: default

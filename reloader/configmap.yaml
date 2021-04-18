@@ -8,4 +8,5 @@ data:
   #MY_KEY: "MY_VALUE"
   MY_KEY: "MY_VALUEsss"
   foo: bar
+  NEWKEY: "NEWVALUE"
 

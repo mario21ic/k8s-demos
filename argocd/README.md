@@ -20,7 +20,15 @@ argocd version
 argocd login argocd.local
 ```
 
-Install App
+Install Guestbook App 
+```
+kubectl apply -f 02-guestbook-helm-app.yaml
+argocd app list
+argocd app get guestbook-helm
+argocd app sync guestbook-helm
+```
+
+Install Reloader App
 ```
 kubectl apply -f 05-reloader-app.yaml
 argocd app list
@@ -30,5 +38,8 @@ Check the app on argocd web
 Modify configmap, commit and Check changes
 ```
 vim ../reloader/configmap.yaml
+git add ../reloader/configmap.yaml
+git push
+argocd app history reloader-demo
 watch.sh
 ```

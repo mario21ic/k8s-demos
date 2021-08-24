@@ -7,8 +7,14 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: mario21ic/nginx:alpine
+    image: mario21ic/nginx
     ports:
       - containerPort: 80
         name: http
         protocol: TCP
+    ports:
+      - containerPort: 80
+        name: http
+        protocol: TCP
+  - name: web
+    image: mario21ic/nginx

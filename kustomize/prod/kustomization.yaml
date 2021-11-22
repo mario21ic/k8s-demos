@@ -1,0 +1,9 @@
+resources:
+- ../base/
+patchesStrategicMerge:
+ - patch.yaml
+namePrefix: prod-
+#configMapGenerator:
+#- name: env-config
+#  files:
+#  - config.env

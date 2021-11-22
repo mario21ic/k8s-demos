@@ -1,0 +1,6 @@
+resources:
+  - deploy.yaml
+#configMapGenerator:
+#- name: ldap-configmap
+#  files:
+#    - env.startup.txt

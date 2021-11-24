@@ -1,0 +1,10 @@
+resources:
+- ../../base/
+patchesStrategicMerge:
+ - deploy.yaml
+ - service.yaml
+namePrefix: staging-
+#configMapGenerator:
+#- name: env-config
+#  files:
+#  - config.env

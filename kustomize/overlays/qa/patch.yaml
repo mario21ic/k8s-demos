@@ -1,13 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx-dp
+spec:
+  replicas: 7
+---
 kind: Service
 apiVersion: v1
 metadata:
   name: nginx-np-svc
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: nginx
-    env: base
+    env: qa
   ports:
     - name: web
       port: 80 # intern
       targetPort: 80 # container
+

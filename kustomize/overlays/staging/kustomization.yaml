@@ -1,10 +1,9 @@
+commonLabels:
+  app: nginx
+  env: staging
 resources:
-- ../../base/
+  - ../../base/
 patchesStrategicMerge:
- - deploy.yaml
- - service.yaml
+  - deploy.yaml
+  - service.yaml
 namePrefix: staging-
-#configMapGenerator:
-#- name: env-config
-#  files:
-#  - config.env

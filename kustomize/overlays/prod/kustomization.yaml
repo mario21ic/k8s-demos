@@ -1,9 +1,13 @@
+commonLabels:
+  app: nginx
+  env: prod
 resources:
-- ../../base/
+  - ../../base/
 patchesStrategicMerge:
- - patch.yaml
+  - deploy.yaml
+  - service.yaml
 namePrefix: prod-
-#configMapGenerator:
-#- name: env-config
-#  files:
-#  - config.env
+configMapGenerator:
+  - name: env-config
+    files:
+      - app.env

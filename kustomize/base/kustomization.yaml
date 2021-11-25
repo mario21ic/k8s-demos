@@ -1,7 +1,10 @@
+commonLabels:
+  app: nginx
+  env: base
 resources:
   - deploy.yaml
   - service.yaml
-#configMapGenerator:
-#- name: ldap-configmap
-#  files:
-#    - env.startup.txt
+configMapGenerator:
+- name: nginx-configmap
+  files:
+    - appenv.conf.txt

@@ -1,0 +1,51 @@
+.
+├── Dockerfile
+├── Makefile
+├── PROJECT
+├── api
+│   └── v1
+│       ├── groupversion_info.go
+│       ├── guestbook_types.go
+│       └── zz_generated.deepcopy.go
+├── bin
+│   └── controller-gen
+├── config
+│   ├── crd
+│   │   ├── kustomization.yaml
+│   │   ├── kustomizeconfig.yaml
+│   │   └── patches
+│   │       ├── cainjection_in_guestbooks.yaml
+│   │       └── webhook_in_guestbooks.yaml
+│   ├── default
+│   │   ├── kustomization.yaml
+│   │   ├── manager_auth_proxy_patch.yaml
+│   │   └── manager_config_patch.yaml
+│   ├── manager
+│   │   ├── controller_manager_config.yaml
+│   │   ├── kustomization.yaml
+│   │   └── manager.yaml
+│   ├── prometheus
+│   │   ├── kustomization.yaml
+│   │   └── monitor.yaml
+│   ├── rbac
+│   │   ├── auth_proxy_client_clusterrole.yaml
+│   │   ├── auth_proxy_role.yaml
+│   │   ├── auth_proxy_role_binding.yaml
+│   │   ├── auth_proxy_service.yaml
+│   │   ├── guestbook_editor_role.yaml
+│   │   ├── guestbook_viewer_role.yaml
+│   │   ├── kustomization.yaml
+│   │   ├── leader_election_role.yaml
+│   │   ├── leader_election_role_binding.yaml
+│   │   ├── role_binding.yaml
+│   │   └── service_account.yaml
+│   └── samples
+│       └── webapp_v1_guestbook.yaml
+├── controllers
+│   ├── guestbook_controller.go
+│   └── suite_test.go
+├── go.mod
+├── go.sum
+├── hack
+│   └── boilerplate.go.txt
+└── main.go

@@ -6,3 +6,8 @@ kubectl get ct
 
 kubectl create --validate=false -f crontab.demo2.yaml -o yaml
 
+Controller:
+- Act
+- Observer
+- Orient
+- Decide

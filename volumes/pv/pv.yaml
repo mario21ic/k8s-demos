@@ -9,6 +9,7 @@ spec:
   storageClassName: manual
   capacity:
     storage: 100Mi
+  # Solo un container puede leer y escribir
   accessModes:
     - ReadWriteOnce
   hostPath:

@@ -27,3 +27,16 @@ Deleting staging:
 ```
 kubectl delete -k overlays/staging
 ```
+
+Deploying a new image version:
+```
+cd base/ && kustomize edit set image mario21ic/nginx:v3 && cd ..
+#kustomize build base > base.yaml
+kustomize build base | k apply -f -
+```
+
+Deploying into a new namespace:
+```
+cd base/ && kustomize edit set namespace staging && cd ..
+kustomize build base | k apply -f -
+```

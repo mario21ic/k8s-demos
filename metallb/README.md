@@ -13,7 +13,7 @@ kubectl apply -f metallb-ipaddresspool.yaml
 Testing:
 ```
 kubectl apply -f app.yaml
-kubectl get svc
+kubectl get svc nginx-lb-svc
 
 curl 192.168.1.55:8080
 ```

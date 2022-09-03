@@ -1,0 +1,37 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx-dp
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-lb-svc
+  annotations:
+    metallb.universe.tf/address-pool: first-pool
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+    - name: web
+      protocol: TCP
+      port: 8080
+      targetPort: 8080

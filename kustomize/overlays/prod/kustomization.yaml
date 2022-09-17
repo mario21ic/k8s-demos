@@ -8,6 +8,9 @@ patchesStrategicMerge:
   - service.yaml
 namePrefix: prod-
 configMapGenerator:
-  - name: env-config
+  - name: nginx-configmap
+    # behavior: create
+    # behavior: merge
+    behavior: replace
     files:
       - app.env

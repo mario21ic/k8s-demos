@@ -1,0 +1,13 @@
+apiVersion: sources.knative.dev/v1
+kind: PingSource
+metadata:
+  name: mykafka-source
+spec:
+  consumerGroup: knative-group
+  bootstratpServers: my-cluster-kafka-boostrap.kafka:9092
+  topics: my-topic
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: eventinghello

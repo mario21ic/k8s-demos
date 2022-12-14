@@ -1,0 +1,13 @@
+apiVersion: sources.knative.dev/v1
+kind: PingSource
+metadata:
+  name: event-greeter-ping-source
+spec:
+  schedule: "*/1 * * * *"
+  contentType: "application/json"
+  data: '{"message": "Thanks for doing Knative Tutorial"}'
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Channel
+      name: eventinghello-ch

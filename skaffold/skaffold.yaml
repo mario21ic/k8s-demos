@@ -1,0 +1,13 @@
+apiVersion: skaffold/v4beta1
+kind: Config
+metadata:
+  name: skaffold
+build:
+  artifacts:
+  - image: mario21ic/nginx
+    context: nginx
+    docker:
+      dockerfile: Dockerfile
+manifests:
+  rawYaml:
+  - manifests/deploy.yaml

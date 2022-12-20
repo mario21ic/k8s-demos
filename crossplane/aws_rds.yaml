@@ -1,0 +1,21 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: rdsdemo
+spec:
+  forProvider:
+    region: us-east-2
+    dbInstanceClass: db.t2.micro
+    masterUsername: masterusuario
+    allocatedStorage: 5
+    engine: postgres
+    engineVersion: "12"
+    skipFinalSnapshotBeforeDeletion: true
+    tags:
+    - key: creator
+      value: mario21ic
+  providerConfigRef:
+    name: aws-provider
+  writeConnectionSecretToRef:
+    namespace: default
+    name: aws-rdspostgresql-conn

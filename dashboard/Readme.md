@@ -8,3 +8,6 @@ kubectl proxy
 
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
+kubectl run -it hacker-container2 --image=madhuakula/hacker-container --overrides='{"spec": { "nodeSelector": {"kubernetes.io/hostname": "rockpix3"}}}' -- sh
+# apk add stress-ng
+# stress-ng -c 4

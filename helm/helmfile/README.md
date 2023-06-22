@@ -14,8 +14,10 @@ mv helmfile_darwin_amd64 /usr/local/bin/
 
 Create a new deploy with helmfile:
 ```
-helmfile sync
-helm list
+$ helmfile sync
+$ helm repo list
+
+$ helm list -A
 
 $ kubectl get svc,deploy,replicaset,pod
 ```

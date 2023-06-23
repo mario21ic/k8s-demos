@@ -1,0 +1,2 @@
+{{ readFile "helloworld/values.yaml" | fromYaml | setValueAtPath "foo.bar" "FOO_BAR2" | toYaml }}
+domain: {{ .Values | get "domain" "dev.example.com" }}

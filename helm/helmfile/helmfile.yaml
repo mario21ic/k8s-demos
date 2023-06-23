@@ -1,4 +1,13 @@
 ---
+environments:
+  production:
+    values:
+    - production.yaml
+  # Loading vars from remote
+  cluster-azure-us-west:
+    values:
+      - git::https://github.com/rahulwagh/helmchart@helloworld?ref=master&sparse=0
+---
 repositories:
   - name: prometheus-community
     url: https://prometheus-community.github.io/helm-charts
@@ -7,10 +16,11 @@ repositories:
 
 releases:
   # From local
-  - name: myhello-helmfile
+  - name: myhello-helmfile1
     chart: ./helloworld
     installed: true 
   #  #installed: false # to uninstall
+
 
   # Own repository
   - name: myhello-helmfile-github
@@ -24,3 +34,19 @@ releases:
     set:
     - name: rbac.create
       value: false
+
+  # From local
+  - name: myhello-helmfile2
+    chart: ./helloworld
+    installed: true 
+    values:
+    - values.yaml.gotmpl
+
+  # From local
+  - name: myhello-helmfile3
+    chart: ./helloworld
+    installed: true 
+    values:
+    - foo:
+          bar: "FOO_BAR3"
+

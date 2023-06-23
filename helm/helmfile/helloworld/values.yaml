@@ -2,6 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# Added for helmfile vars example
+foo:
+  bar: "demo"
+domain: "demo.example.com"
+
 replicaCount: 1
 
 image:

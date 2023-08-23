@@ -1,8 +1,9 @@
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-
 kubectl apply -f rbac.yaml
-kubectl -n kubernetes-dashboard create token admin-user
 
+kubectl -n kubernetes-dashboard create token admin-user
+kubectl apply -f long-lived-token.yaml
+kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
 
 kubectl proxy
 

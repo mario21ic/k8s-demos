@@ -9,3 +9,9 @@ Probando con un request muy grande:
 ```
 kubectl apply -f pod2.yaml
 ```
+
+Revisando limit range:
+```
+kubectl get limitrange
+kubectl describe limitrange container-limits
+```

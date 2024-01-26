@@ -1,0 +1,11 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-client
+  namespace: nptest
+spec:
+  containers:
+  - name: alpine
+    image: mario21ic/alpine:curl
+    command: ['sh', '-c', "while true; do curl -I 172.31.10.60; sleep 2; done"]
+    # puede llegar incluso desde otro namespace

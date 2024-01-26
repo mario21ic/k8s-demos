@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-cm
+data:
+  MY_KEY: "MY_VALUE"
+  foo: bar
+  #newkey: newvalue
+

@@ -1,0 +1,18 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: audit-test
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx
+  namespace: audit-test
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    ports:
+      - containerPort: 80

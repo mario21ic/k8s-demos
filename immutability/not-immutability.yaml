@@ -1,0 +1,13 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: not-immutability-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    securityContext:
+      privileged: true
+      allowPrivilegeEscalation: true
+      runAsUser: 0
+      readOnlyRootFilesystem: false

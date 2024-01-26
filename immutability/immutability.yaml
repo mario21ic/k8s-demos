@@ -1,0 +1,26 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: immutability-pod
+spec:
+  #hostNetwork: true  # host namespaces puede hacer mutable, ademas de no usar su propia red
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    securityContext:
+      #privileged: false # nunca modo privileged
+      #allowPrivilegeEscalation: false # no permitir escalamiento
+      #runAsUser: 0 # nunca root
+      runAsUser: 1000 # poner un usuario o dejar el del image
+      readOnlyRootFilesystem: true # para que no reescribe el codigo ni nada del FS en runtime
+    volumeMounts: # para poder escribir de forma temporal en carpetas especificas
+    - name: cache
+      mountPath: /var/cache/nginx
+    - name: run
+      mountPath: /var/run
+  volumes: # emptyDirs
+  - name: cache
+    emptyDir: {}
+  - name: run
+    emptyDir: {}
+

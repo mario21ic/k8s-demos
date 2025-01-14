@@ -1,0 +1,3 @@
+kopf
+pykube-ng
+pyyaml

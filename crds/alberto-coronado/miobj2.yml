@@ -1,0 +1,10 @@
+apiVersion: crds.albertcoronado.com/v1
+kind: AlbertCrd
+metadata:
+  name: test2
+  namespace: default
+spec:
+  prop1: "Hello"
+  prop2: "World"
+  prop3: 123
+

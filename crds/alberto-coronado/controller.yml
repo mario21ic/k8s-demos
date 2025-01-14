@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: albertcrd-sa
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: albertcrd-cr
+  namespace: default
+rules:
+  - apiGroups:
+      - crds.albertcoronado.com
+      - apiextensions.k8s.io
+      - ""
+      - apps
+      - autoscaling
+      - batch
+    resources:
+      - albertcrds
+      - customresourcedefinitions
+      - events
+      - services
+      - pods
+      - pods/log
+      - pods/exec
+      - namespaces
+      - replicationcontrollers
+      - daemonsets.apps
+      - deployments
+      - replicasets
+      - statefulsets
+      - horizontalpodautoscalers
+      - cronjobs
+      - jobs
+      - daemonsets
+    verbs:
+      - create
+      - watch
+      - get
+      - list
+      - update
+      - patch
+      - delete
+      - deletecollection
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: albertcrd-crb
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: albertcrd-cr
+subjects:
+  - kind: ServiceAccount
+    name: albertcrd-sa
+    namespace: default
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: albertcrd-controller
+  namespace: default
+spec:
+  serviceAccountName: albertcrd-sa
+  containers:
+    - name: python
+      image: python:3.12.3-slim
+      command:
+        - /bin/bash
+        - -c
+        - |
+          pip install kopf pykube-ng pyyaml;
+          echo "import kopf" > /tmp/controller.py;
+          echo "import logging" >> /tmp/controller.py;
+          echo ""
+          echo "@kopf.on.create(\"crds.albertcoronado.com\", \"v1\", \"albertcrd\")" >> /tmp/controller.py;
+          echo "def create_fn(spec, **kwargs):" >> /tmp/controller.py;
+          echo "    logging.info(\"Created.\")" >> /tmp/controller.py;
+          echo "    logging.info(spec)" >> /tmp/controller.py;
+          echo "    logging.info(kwargs)" >> /tmp/controller.py;
+          echo ""
+          echo "@kopf.on.update(\"crds.albertcoronado.com\", \"v1\", \"albertcrd\")" >> /tmp/controller.py;
+          echo "def update_fn(spec, **kwargs):" >> /tmp/controller.py;
+          echo "    logging.info(\"Update.\")" >> /tmp/controller.py;
+          echo "    logging.info(spec)" >> /tmp/controller.py;
+          echo "    logging.info(kwargs)" >> /tmp/controller.py;
+          echo ""
+          echo "@kopf.on.delete(\"crds.albertcoronado.com\", \"v1\", \"albertcrd\")" >> /tmp/controller.py;
+          echo "def delete_fn(spec, **kwargs):" >> /tmp/controller.py;
+          echo "    logging.info(\"Delete.\")" >> /tmp/controller.py;
+          echo "    logging.info(spec)" >> /tmp/controller.py;
+          echo "    logging.info(kwargs)" >> /tmp/controller.py;
+          cat /tmp/controller.py;
+          kopf run /tmp/controller.py;
+

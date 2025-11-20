@@ -1,0 +1,18 @@
+# Descripción: aquí el contenedor tiene requests y limits, pero los valores no son iguales (por ejemplo request de 64Mi pero limit de 128Mi). Por lo tanto, el Pod será de clase Burstable. 
+# Uso sugerido: workloads que deben tener un mínimo garantizado, pero pueden “hacer bursting” si hay recursos disponibles.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-burstable
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu:    "50m"
+      limits:
+        memory: "128Mi"
+        cpu:    "200m"
+

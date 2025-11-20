@@ -1,0 +1,18 @@
+# Descripción: en este manifiesto cada contenedor tiene requests y limits para memoria y CPU, y los valores son exactamente iguales (128Mi/100m). Esto hará que el Pod quede en clase Guaranteed. 
+# Uso sugerido: workloads críticos donde quieres máxima estabilidad.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-guaranteed
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu:    "100m"
+      limits:
+        memory: "128Mi"
+        cpu:    "100m"
+

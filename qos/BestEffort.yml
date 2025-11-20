@@ -1,0 +1,12 @@
+# Descripción: en este caso no se especifican requests ni limits para CPU o memoria, lo que automáticamente coloca el Pod en clase BestEffort. 
+# Uso sugerido: tareas de bajo impacto, background jobs, experimentación, donde la resiliencia no sea crítica.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qos-besteffort
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    # Sin sección resources → no requests ni limits especificados
+

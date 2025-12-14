@@ -59,3 +59,5 @@ Uninstall
 ```
 helm -n falco uninstall falco
 ```
+
+more info https://falco.org/docs/getting-started/falco-kubernetes-quickstart/

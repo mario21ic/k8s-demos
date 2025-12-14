@@ -25,4 +25,9 @@ kubectl exec -it $POD -- bash -c "apt update && apt install masscan"
 karmor logs -n default --json
 ```
 
+Recommend:
+karmor recommend -n default
+
 more info https://docs.kubearmor.io/kubearmor/quick-links/deployment_guide
+
+

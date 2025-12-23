@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: http-app
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         app: http-app
+   template:
+      metadata:
+         labels:
+            app: http-app
+      spec:
+         containers:
+         - name: http-app
+           image: hashicorp/http-echo
+           args:
+              - "-text=Hello, KEDA!"
+           ports:
+              - containerPort: 5678
+

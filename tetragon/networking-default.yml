@@ -1,0 +1,25 @@
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicyNamespaced # Use this kind for namespace-specific policies
+metadata:
+  name: "monitor-etc-shadow"
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx # Optional: further restrict the policy to specific pods with this label
+  kprobes:
+    - call: "security_file_permission"
+      syscall: false
+      args:
+        - index: 0
+          type: "file"
+        - index: 1
+          type: "int"
+      selectors:
+      - matchArgs:
+          - index: 0
+            operator: "Equal"
+            values:
+              - "/etc/shadow"
+        matchActions:
+        - action: Sigkill
+

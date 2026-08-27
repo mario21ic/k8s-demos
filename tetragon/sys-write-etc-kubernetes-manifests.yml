@@ -1,0 +1,25 @@
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicy
+metadata:
+  name: "file-write-etc-kubernetes-manifests"
+spec:
+  podSelector:
+    matchLabels:
+     org: empire
+  options:
+  - name: "disable-kprobe-multi"
+    value: "1"
+  kprobes:
+  - call: "security_file_permission"
+    syscall: false
+    args:
+    - index: 0
+      type: "file" # (struct file *) used for getting the path
+    - index: 1
+      type: "int" # 0x04 is MAY_READ, 0x02 is MAY_WRITE
+    selectors:
+    - matchArgs:      
+      - index: 0
+        operator: "Prefix"
+        values:
+        - "/etc/kubernetes/manifests"

@@ -1,0 +1,26 @@
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicy
+metadata:
+  name: "block-apk-exec"
+spec:
+  kprobes:
+  - call: "sys_execve"
+    syscall: true
+    args:
+      - index: 0
+        type: "string"
+    selectors:
+    #- matchBinaries:
+    - matchArgs:
+      - index: 0
+        #operator: "Equal"
+        operator: "Postfix"
+        values:
+        #- "/apt"
+        #- "/apt-get"
+        - "/apk"
+        #followChildren: true
+      matchActions:
+        - action: Override
+          argError: -1
+        #- action: Sigkill

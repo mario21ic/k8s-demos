@@ -1,0 +1,26 @@
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicy
+metadata:
+  name: "block-shell-exec"
+spec:
+  kprobes:
+  - call: "sys_execve"
+    syscall: true
+    args:
+      - index: 0
+        type: "string"
+    selectors:
+    - matchArgs:
+      - index: 0
+        operator: "Equal"
+        #operator: "Prefix"
+        values:
+        #- "/usr/bin/bash"
+        #- "/bin/bash"
+        #- "/usr/bin/sh"
+        - "/bin/sh"
+        - "/sh"
+      matchActions:
+        - action: Override
+          argError: -1
+        #- action: Sigkill
